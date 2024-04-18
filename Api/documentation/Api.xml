@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Api</name>
+    </assembly>
+    <members>
+        <member name="M:Api.Controllers.Api.V1.Core.AuthenticationController.Login(Api.Common.Models.ApiRequests.AuthenticateRequest)">
+            <summary>
+            Přihlášení uživatele
+            </summary>
+            <param name="authenticateRequest"></param>
+            <response code="200">Vrátí přihlášeného uživatele a JWT token pro další komunikaci s API, včetně doby jeho vypršení. Refresh token je vracen jako cookie.</response>
+            <response code="401">Neplatný pokus o přihlášení k API. Email, nebo heslo jsou neplatné, nebo nejsou vyplněné.</response>
+            <response code="500">Obecná chyba serveru. Více informací je k nalezení v logu aplikace.</response>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.Api.V1.Core.AuthenticationController.RefreshToken">
+            <summary>
+            Obnovení JWT tokenu pomocí refresh tokenu. Refresh token musí být v požadavku v cookie
+            </summary>
+            <returns></returns>
+            <response code="200">Vrátí přihlášeného uživatele a JWT token pro další komunikaci s API, včetně doby jeho vypršení. Refresh token je vracen jako cookie.</response>
+            <response code="401">Neplatný pokus o přihlášení k API. Email, nebo heslo jsou neplatné, nebo nejsou vyplněné.</response>
+            <response code="500">Obecná chyba serveru. Více informací je k nalezení v logu aplikace.</response>
+        </member>
+        <member name="M:Api.Controllers.Api.V1.Core.AuthenticationController.ValidateToken(System.String)">
+            <summary>
+            Validace JWT tokenu.
+            </summary>
+            <param name="token"></param>
+            <response code="200">Vrátí AuthorizeResponse s uživateským jménem, platným JWT tokenem a refresh tokenem.</response>
+            <response code="401">Neautorizováno, pokud v těle požadavku token chybí, nebo je token neplatný.</response>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.Api.V1.Core.AuthenticationController.RevokeRefreshToken(System.String)">
+            <summary>
+            Zrušení platnosti refresh tokenu
+            </summary>
+            <param name="token"></param>
+            <response code="204">Platnost refresh tokenu byla ukončena.</response>
+            <response code="500">Při požadavku došlo k chybě na serveru.</response>
+            <returns></returns>   
+        </member>
+        <member name="M:Api.Controllers.Api.V1.Core.AuthenticationController.GetUsername">
+            <summary>
+            Vrací uživatelské jméno aktuálně přihlášeného uživatele. Pro potřeby klientské aplikace
+            </summary>
+            <response code="200">Vrátí AuthorizeResponse s uživateským jménem, platným JWT tokenem a refresh tokenem.</response>
+            <response code="401">Neautorizováno, pokud v těle požadavku token chybí, nebo je token neplatný.</response>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.Api.V1.Core.TransactionsController.GetTransactions">
+            <summary>
+            Stažení všech transakcí
+            </summary>
+            <response code="200">Vrátí seznam všech transakcí</response>
+            <response code="401">Chybí oprávnění ke stažení seznamu rolí</response>
+            <response code="500">Při požadavku došlo k chybě na serveru.</response>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.Api.V1.Core.UsersAndRolesManagementController.CreateUser(Api.Common.Models.ApiRequests.AuthenticateRequest)">
+            <summary>
+            Vytvoření nového uživatele. Bez autorizace lze vytvořit pouze prvního uživatele
+            </summary>
+            <param name="authenticateRequest"></param>
+            <response code="204">Požadavek byl proveden úspěšně, odpověď nemá žádné tělo.</response>
+            <response code="400">Chyba požadavku.</response>
+            <response code="401">Neautorizováno. Mimo prvního uživatele, lze vytvářet uživatele pouze s přihlášením.</response>
+            <response code="500">Při požadavku došlo k chybě na serveru.</response>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.Api.V1.Core.UsersAndRolesManagementController.GetLoggedUser">
+            <summary>
+            Můj účet
+            </summary>
+            <returns></returns>
+            <response code="200">Vrátí informace o aktuálně přihlášeném uživateli</response>
+            <response code="500">Při požadavku došlo k chybě na serveru.</response>
+        </member>
+        <member name="M:Api.Controllers.Api.V1.Core.UsersAndRolesManagementController.GetUser(Api.Common.Models.ApiRequests.GetUserRequest)">
+            <summary>
+            Informace o uživateli
+            </summary>
+            <param name="request">Požadavek na uživatele - Možno zadat Id, nebo uživatelské jméno</param>
+            <returns></returns>
+            <response code="200">Vrátí informace o uživateli.</response>
+            <response code="401">Neautorizováno. Mimo prvního uživatele, lze vytvářet uživatele pouze s přihlášením.</response>
+            <response code="404">Uživatel se zadaným Id, nebo emailem nebyl nalezen.</response>
+            <response code="500">Při požadavku došlo k chybě na serveru.</response>
+        </member>
+        <member name="M:Api.Controllers.Api.V1.Core.UsersAndRolesManagementController.UpdateLoggedUser(Api.Common.Models.ApiRequests.UpdateUserRequest)">
+            <summary>
+            Upravit můj účet
+            </summary>
+            <param name="request"></param>
+            <response code="200">Vrátí upravenou instanci uživatele.</response>
+            <response code="401">Chybí oprávnění pro úpravu uživatele</response>
+            <response code="404">Uživatel se zadaným Id, nebo emailem nebyl nalezen.</response>
+            <response code="500">Při požadavku došlo k chybě na serveru.</response>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.Api.V1.Core.UsersAndRolesManagementController.UpdateUser(Api.Common.Models.ApiRequests.UpdateUserRequest)">
+            <summary>
+            Upraví informace o uživateli
+            </summary>
+            <param name="request"></param>
+            <response code="200">Vrátí upravenou instanci uživatele.</response>
+            <response code="401">Chybí oprávnění pro úpravu uživatele</response>
+            <response code="404">Uživatel se zadaným Id, nebo emailem nebyl nalezen.</response>
+            <response code="500">Při požadavku došlo k chybě na serveru.</response>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.Api.V1.Core.UsersAndRolesManagementController.GetLoggedUserRoles">
+            <summary>
+            Můj seznam rolí
+            </summary>
+            <returns></returns>
+            <response code="200">Vrátí seznam rolí aktuálně přihlášeném uživateli</response>
+            <response code="500">Při požadavku došlo k chybě na serveru.</response>
+        </member>
+        <member name="M:Api.Controllers.Api.V1.Core.UsersAndRolesManagementController.DeleteUser(Api.Common.Models.ApiRequests.DeleteUserRequest)">
+            <summary>
+            Odstraní uživatele
+            </summary>
+            <param name="request"></param>
+            <response code="204">Uživatel byl odstraněn z databáze uživatelů</response>
+            <response code="400">Nebyl zadán email uživatele pro odstranění</response>
+            <response code="401">Chybí oprávnění pro odstranění uživatele</response>
+            <response code="404">Uživatel se zadaným Id, nebo emailem nebyl nalezen.</response>
+            <response code="500">Při požadavku došlo k chybě na serveru.</response>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.Api.V1.Core.UsersAndRolesManagementController.GetUsers">
+            <summary>
+            Stažení seznamu uživatelů
+            </summary>
+            <response code="200">Vrátí seznam všech uživatelů</response>
+            <response code="401">Chybí oprávnění ke stažení seznamu uživatelů</response>
+            <response code="500">Při požadavku došlo k chybě na serveru.</response>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.Api.V1.Core.UsersAndRolesManagementController.CreateRole(Api.Common.Models.ApiRequests.CreateRoleRequest)">
+            <summary>
+            Vytvoření nové role
+            </summary>
+            <param name="createRoleRequest"></param>
+            <response code="204">Požadavek byl proveden úspěšně, odpověď nemá žádné tělo.</response>
+            <response code="400">Chyba požadavku.</response>
+            <response code="401">Chybí oprávnění k vytvoření role.</response>
+            <response code="500">Při požadavku došlo k chybě na serveru.</response>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.Api.V1.Core.UsersAndRolesManagementController.GetRoles">
+            <summary>
+            Stažení seznamu rolí
+            </summary>
+            <response code="200">Vrátí seznam všech rolí</response>
+            <response code="401">Chybí oprávnění ke stažení seznamu rolí</response>
+            <response code="500">Při požadavku došlo k chybě na serveru.</response>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

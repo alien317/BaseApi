@@ -1,0 +1,129 @@
+{
+  "Module": [
+    {      
+      "Name": "Web aplikace",
+      "Code": "WEB_APPLICATION",
+      "Application": [
+        {          
+          "Name": "Správa rolí a uživatelů",
+          "Code": "USERS_AND_ROLES",
+          "Order": 0,
+          "Transaction": [
+            {
+              "Name": "Seznam uživatelů",
+              "TransactionUrl": "/api/v1/users-list",
+              "Order": 0,
+              "ShowInMenu": true,
+              "Code": "USERS000"
+            },
+            {
+              "Name": "Přidání nového uživatele",
+              "TransactionUrl": "/api/v1/create-user",
+              "Order": 1,
+              "ShowInMenu": false,
+              "Code": "USERS001"
+            },
+            {
+              "Name": "Informace o uživateli",
+              "TransactionUrl": "/api/v1/get-user",
+              "Order": 2,
+              "ShowInMenu": false,
+              "Code": "USERS002"
+            },
+            {
+              "Name": "Úprava uživatele",
+              "TransactionUrl": "/api/v1/update-user",
+              "Order": 3,
+              "ShowInMenu": false,
+              "Code": "USERS003"
+            },
+            {
+              "Name": "Smazání uživatele",
+              "TransactionUrl": "/api/v1/delete-user",
+              "Order": 4,
+              "ShowInMenu": false,
+              "Code": "USERS004"
+            },
+            {
+              "Name": "Můj účet",
+              "TransactionUrl": "/api/v1/my-user",
+              "Order": 5,
+              "ShowInMenu": false,
+              "Code": "USERS005"
+            },
+            {
+              "Name": "Můj seznam rolí",
+              "TransactionUrl": "/api/v1/my-roles",
+              "Order": 6,
+              "ShowInMenu": false,
+              "Code": "USERS006"
+            },
+            {
+              "Name": "Úprava mého účtu",
+              "TransactionUrl": "/api/v1/update-my-user",
+              "Order": 7,
+              "ShowInMenu": false,
+              "Code": "USERS008"
+            },
+            {
+              "Name": "Seznam rolí",
+              "TransactionUrl": "/api/v1/roles-list",
+              "Order": 0,
+              "ShowInMenu": true,
+              "Code": "ROLES000"
+            },
+            {
+              "Name": "Přidání nové role",
+              "TransactionUrl": "/api/v1/create-role",
+              "Order": 1,
+              "ShowInMenu": false,
+              "Code": "ROLES001"
+            },
+            {
+              "Name": "Informace o roli",
+              "TransactionUrl": "/api/v1/get-role",
+              "Order": 2,
+              "ShowInMenu": false,
+              "Code": "ROLES002"
+            },
+            {
+              "Name": "Úprava role",
+              "TransactionUrl": "/api/v1/update-role",
+              "Order": 3,
+              "ShowInMenu": false,
+              "Code": "ROLES003"
+            },
+            {
+              "Name": "Smazání uživatele",
+              "TransactionUrl": "/api/v1/delete-role",
+              "Order": 4,
+              "ShowInMenu": false,
+              "Code": "ROLES004"
+            }
+          ]
+        },
+        {          
+          "Name": "Nastavení systému",
+          "Code": "SETTINGS",
+          "Order": 1,
+          "Transaction": [
+            {
+              "Name": "Seznam transakcí",
+              "TransactionUrl": "/api/v1/transactions-list",
+              "Order": 0,
+              "ShowInMenu": false,
+              "Code": "SETTINGS001"
+            },
+            {
+              "Name": "Seznam účetních subjektů",
+              "TransactionUrl": "/api/v1/accounting-subjects-list",
+              "Order": 0,
+              "ShowInMenu": false,
+              "Code": "SETTINGS002"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
