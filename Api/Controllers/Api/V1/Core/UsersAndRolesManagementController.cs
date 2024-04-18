@@ -134,7 +134,7 @@ namespace Api.Controllers.Api.V1.Core
             {
                 var user = HttpContext.Items["User"] as ApplicationUser;
 
-                if (request.User?.Id != _mapper.Map<UserDTO>(user).Id) return Unauthorized();
+                if (request.Id == null) request.Id = user?.Id;
 
                 return Ok(await _usersAndRolesManagementService.UpdateUser(request));
             }
